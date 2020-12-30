@@ -1,0 +1,8 @@
+{
+    "defaultport":50344,
+    "server":{
+        "ignoreQuotation":true
+    },
+    "client":{   
+    }
+}
