@@ -6,7 +6,7 @@ A poorly written SSH alternative in Python
 
 ## How to run
 Running the program is fairly simple.
-* **OPTIONAL** Edit the config.plist to your will.
+* **OPTIONAL** Edit the config.json to your will.
 * Launch **Server.py** on a computer that will send commands to the client.
 * Launch **Client.py** on the computer that will receive and execute those commands.
 * Using the **Server.py**'s "**Connection Address**", connect to the Server using the Client.
