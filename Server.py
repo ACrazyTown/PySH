@@ -2,9 +2,10 @@ import time
 import socket
 import json
 import os
+import sys
 from platform import system
 
-os.chdir(__file__.replace(os.path.basename(__file__), ""))
+os.chdir(os.path.dirname(sys.argv[0]))
 with open("config.json", "r") as f:
     data = json.load(f)
 
