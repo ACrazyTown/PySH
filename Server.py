@@ -11,7 +11,6 @@ with open("config.json", "r") as f:
     PORT = DEFAULTPORT
     ignoreQuotation = data["server"]["ignoreQuotation"]
 
-print(ignoreQuotation)
 class Server:
     def get_info(self):
         # self.HOST = str(input("Please enter the IP address of the device you want to connect to: "))
