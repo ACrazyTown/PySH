@@ -2,6 +2,7 @@ import time
 import socket
 import json
 import os
+from platform import system
 
 os.chdir(__file__.replace(os.path.basename(__file__), ""))
 with open("config.json", "r") as f:
@@ -12,6 +13,9 @@ with open("config.json", "r") as f:
     ignoreQuotation = data["server"]["ignoreQuotation"]
 
 class Server:
+    def __init__(self):
+        self.s = socket.socket()
+        
     def get_info(self):
         # self.HOST = str(input("Please enter the IP address of the device you want to connect to: "))
         self.PORT = input("Please enter the Port to use for connecting. (leave empty to use default port: {}): ".format(DEFAULTPORT))
@@ -19,7 +23,7 @@ class Server:
         if self.PORT == "":
             self.PORT = PORT
             return
-        
+
         try:
             self.PORT = int(self.PORT)
         except ValueError:
@@ -27,10 +31,12 @@ class Server:
 
     def establish_connection(self, PORT):
         global conn
-        
-        self.s = socket.socket()
-        self.host = socket.gethostname()
 
+        if system() != "Darwin":
+            self.host = socket.gethostname()
+        else:
+            self.host = "localhost"
+        
         self.s.bind(("", PORT))
         print("Server is online.")
         print("Connection Address: {}:{}".format(socket.gethostbyname(self.host), self.PORT))

@@ -16,13 +16,20 @@ class Client:
         self.s = socket.socket()
 
     def connect(self):
-        self.IPADDR = input("Please type the IP and PORT (optional, default is {}) of the device you want to connect to. (eg. 192.168.0.11:50234): ".format(DEFAULTPORT))
+        while True:
+            self.IPADDR = input("Please type the IP and PORT (optional, default is {}) of the device you want to connect to. (eg. 192.168.0.11:50234): ".format(DEFAULTPORT))
 
-        if self.IPADDR == "":
-            return
+            if self.IPADDR != "":
+                break
 
+        if self.IPADDR.lower() == "localhost":
+            self.HOST = "127.0.0.1"
+        
         if ":" in self.IPADDR:
             self.IPADDR = self.IPADDR.split(":", 1)
+            if self.IPADDR[0] == "localhost":
+                self.HOST = "127.0.0.1"
+
             self.HOST = str(self.IPADDR[0])
             self.PORT = int(self.IPADDR[1])
         else:
