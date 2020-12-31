@@ -10,4 +10,5 @@ Running the program is fairly simple.
 * Launch **Server.py** on a computer that will send commands to the client.
 * Launch **Client.py** on the computer that will receive and execute those commands.
 * Using the **Server.py**'s "**Connection Address**", connect to the Server using the Client.
-* You're done!
+***(NOTE: On macOS the connection address will always be localhost (127.0.0.1), this is due to an issue with socket.gethostbyname() on macOS. If you want to use the Client on a computer running macOS; you are going to have to get the local/public IP manually.***
+* You're done
