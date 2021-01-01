@@ -12,11 +12,14 @@ with open("config.json", "r") as f:
     DEFAULTPORT = data["defaultport"]
     PORT = DEFAULTPORT
     ignoreQuotation = data["server"]["ignoreQuotation"]
+    VERSION = data ["server"]["version"]
 
 class Server:
     def __init__(self):
         self.s = socket.socket()
-        
+    
+        print("PySH Server")
+        print("Version: {}".format(VERSION))
     def get_info(self):
         # self.HOST = str(input("Please enter the IP address of the device you want to connect to: "))
         self.PORT = input("Please enter the Port to use for connecting. (leave empty to use default port: {}): ".format(DEFAULTPORT))
@@ -39,7 +42,7 @@ class Server:
             self.host = "localhost"
         
         self.s.bind(("", PORT))
-        print("Server is online.")
+        print("Server is ready.")
         print("Connection Address: {}:{}".format(socket.gethostbyname(self.host), self.PORT))
         print("Waiting for Client...")
         self.s.listen()
