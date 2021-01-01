@@ -20,6 +20,8 @@ class Server:
     
         print("PySH Server")
         print("Version: {}".format(VERSION))
+        print("-"*25)
+        
     def get_info(self):
         # self.HOST = str(input("Please enter the IP address of the device you want to connect to: "))
         self.PORT = input("Please enter the Port to use for connecting. (leave empty to use default port: {}): ".format(DEFAULTPORT))
