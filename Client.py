@@ -15,9 +15,11 @@ with open("config.json", "r") as f:
 class Client:
     def __init__(self):
         self.s = socket.socket()
-
+        
         print("PySH Client")
         print("Version: {}".format(VERSION))
+        print("-"*25)
+
     def connect(self):
         while True:
             self.IPADDR = input("Please type the IP and PORT (optional, default is {}) of the device you want to connect to. (eg. 192.168.0.11:50234): ".format(DEFAULTPORT))
@@ -39,7 +41,13 @@ class Client:
             self.HOST = str(self.IPADDR)
             self.PORT = DEFAULTPORT
 
-        self.s.connect((self.HOST, self.PORT))
+        self.s.settimeout(5)
+        
+        try:
+            self.s.connect((self.HOST, self.PORT))
+        except socket.error:
+            print("\nFailed to connect. Check if you've typed the connection address correctly.\n")
+            self.connect()
         
         print("Connected to the Server.")
 
