@@ -10,11 +10,14 @@ with open("config.json", "r") as f:
     data = json.load(f)
 
     DEFAULTPORT = data["defaultport"]
+    VERSION = data["client"]["version"]
     
 class Client:
     def __init__(self):
         self.s = socket.socket()
 
+        print("PySH Client")
+        print("Version: {}".format(VERSION))
     def connect(self):
         while True:
             self.IPADDR = input("Please type the IP and PORT (optional, default is {}) of the device you want to connect to. (eg. 192.168.0.11:50234): ".format(DEFAULTPORT))
@@ -37,6 +40,7 @@ class Client:
             self.PORT = DEFAULTPORT
 
         self.s.connect((self.HOST, self.PORT))
+        
         print("Connected to the Server.")
 
     def run_command(self):
